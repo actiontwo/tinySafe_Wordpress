@@ -11,8 +11,27 @@
             <header>
                 <section id="wrapper_header">
                     <div id="header">
-                        <div id="header_logo"><a class="header_logo"><img src="<?php print IMAGES; ?>/logo.png"></a></div>
-                        <nav id="header_menu">
+                      
+                        <div id="header_logo">
+                            <a class="header_logo" href="<?php get_home_url() ?>">
+                                <?php if (get_option('logo')) { ?>
+                                    <img src="<?= get_home_url() . "/wp-content/" . get_option('logo'); ?>">
+                                <?php } else { ?>
+                                    <img src="<?php print IMAGES; ?>logo.png">
+                                <?php } ?>
+                            </a>
+                        </div>
+                        <?php
+                        $topMenu = array(
+                            'theme_location' => 'topMenu',
+                            'container' => 'nav',
+                            'container_id' => 'header_menu',
+                            'menu_class' => '',
+                            'menu' => ''
+                        );
+                        wp_nav_menu($topMenu);
+                        ?> 
+<!--                        <nav id="header_menu">
                             <ul>
                                 <li><a href="#">TinySafe Revolution</a></li>
                                 <li><a href="#">How If Works</a></li>
@@ -21,7 +40,7 @@
                                 <li><a href="#">FAQ</a></li>
                                 <li><a href="#">Contact Us</a></li>
                             </ul>
-                        </nav>
+                        </nav>-->
                     </div>
                 </section>
                 <section id="slider_imgs">
